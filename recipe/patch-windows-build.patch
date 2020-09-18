@@ -1,0 +1,26 @@
+From 63e51a29965a14d9ecbd09425999f803a9a00e64 Mon Sep 17 00:00:00 2001
+From: Lindsey Gray <lindsey.gray@gmail.com>
+Date: Fri, 18 Sep 2020 16:14:15 -0500
+Subject: [PATCH] patch to windows builds in conda pipelines
+
+---
+ setup.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 2617e8f..b34f5d2 100644
+--- a/setup.py
++++ b/setup.py
+@@ -67,7 +67,8 @@ class CMakeBuild(setuptools.command.build_ext.build_ext):
+                 "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{0}={1}".format(cfg.upper(), extdir),
+                 "-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE",
+             ]
+-            if sys.maxsize > 2**32 and os.environ.get("CMAKE_GENERATOR") != "NMake Makefiles":
++            excluded_gens = ["NMake Makefiles", "Visual Studio 15 2017 Win64"]
++            if sys.maxsize > 2**32 and os.environ.get("CMAKE_GENERATOR") not in excluded_gens:
+                 cmake_args += ["-A", "x64"]
+         else:
+             cmake_args += ["-DCMAKE_BUILD_TYPE=" + cfg]
+-- 
+2.28.0
+
