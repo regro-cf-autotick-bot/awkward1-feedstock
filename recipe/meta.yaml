@@ -9,8 +9,6 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/awkward1-{{ version }}.tar.gz
   sha256: 87a85942613c9767a87e9c9ab9796b6a908f0eaf6a587f142a9fbb8c608564cb
-  patches:
-    - patch-windows-build.patch
 
 build:
   number: 0
