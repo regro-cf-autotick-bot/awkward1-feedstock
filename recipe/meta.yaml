@@ -1,5 +1,5 @@
 {% set name = "awkward1" %}
-{% set version = "0.3.1" %}
+{% set version = "0.4.4" %}
 
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/awkward1-{{ version }}.tar.gz
-  sha256: 87a85942613c9767a87e9c9ab9796b6a908f0eaf6a587f142a9fbb8c608564cb
+  sha256: 72b63e25c1c0d85ee4b36b094c7103ef0e40678265eb1e240322ee19fe334368
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<=34]
   script: {{ PYTHON }} -m pip install . -vv
 
